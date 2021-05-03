@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_data %}
+
+
+<!-- single -->
+<div class="single-page-agile-main">
+<div class="container">
+		<!-- /w3l-medile-movies-grids -->
+			<div class="agileits-single-top">
+				<ol class="breadcrumb">
+				  <li><a href="{% url 'index' %}">Home</a></li>
+				  <li class="active">{{ movie.Title }}</li>
+				</ol>
+			</div>
+			<div class="single-page-agile-info">
+                   <!-- /movie-browse-agile -->
+                           <div class="show-top-grids-w3lagile">
+				<div class="col-sm-8 single-left">
+					<div class="song">
+						<div class="song-info">
+							<h3>{{ movie.Title }}</h3>
+					</div>
+						<div class="video-grid-single-page-agileits">
+							 <img src="{{ movie.Poster }}" style="max-height:600px;max-width:400px;" class="img-responsive" />
+						</div>
+					</div>
+					<div class="song-grid-right">
+						<div class="share">
+							<h5>Share this</h5>
+							<div class="single-agile-shar-buttons">
+							<ul>
+								<li>
+									<div class="fb-like" data-href="https://www.facebook.com/w3layouts" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+									<script>(function(d, s, id) {
+									  var js, fjs = d.getElementsByTagName(s)[0];
+									  if (d.getElementById(id)) return;
+									  js = d.createElement(s); js.id = id;
+									  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+									  fjs.parentNode.insertBefore(js, fjs);
+									}(document, 'script', 'facebook-jssdk'));</script>
+								</li>
+								<li>
+									<div class="fb-share-button" data-href="https://www.facebook.com/sahrsh" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={% url 'index'%}movie/{{ movie.id }}&amp;src=sdkpreparse">Share</a></div>
+								</li>
+								<li class="news-twitter">
+									<a href="https://twitter.com/w3layouts" class="twitter-follow-button" data-show-count="false">Follow @w3layouts</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+								</li>
+								<li>
+									<a href="https://twitter.com/intent/tweet?screen_name=w3layouts" class="twitter-mention-button" data-show-count="false">Tweet to @w3layouts</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+								</li>
+								<li>
+									<!-- Place this tag where you want the +1 button to render. -->
+									<div class="g-plusone" data-size="medium"></div>
+
+									<!-- Place this tag after the last +1 button tag. -->
+									<script type="text/javascript">
+									  (function() {
+										var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+										po.src = 'https://apis.google.com/js/platform.js';
+										var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+									  })();
+									</script>
+								</li>
+							</ul>
+						</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+
+					<div class="all-comments">
+						<div class="all-comments-info">
+							<div class="h3">Movie Details</div>
+							<div class="" style="border:2px solid #eee; padding:13px;"><div class="h4"> Story Linen :  </div>{{ movie.story_line }}</div><br>
+							<div class="pb-10"><strong>Release Date :</strong></strong> {{ movie.Released }}</div><br>
+							<div class=""> <strong>Movie  Runtime :</strong> {{ movie.Runtime }}</div><br>
+							<div class=""> <strong>Director Of Movie  :</strong> {{ movie.Director }}</div><br>
+							<div class=""><strong> Movie  Genre :</strong> {{ movie.Genre }}</div><br>
+							<div class=""> <strong>Movie  Writer :</strong> {{ movie.Writer }}</div><br>
+							<div class=""> <strong>Movie  Language :</strong> {{ movie.Language }}</div><br>
+							<div class=""><strong> Movie  Country :</strong> {{ movie.Country }}</div><br>
+							<div class=""><strong> Movie  Awards :</strong> {{ movie.Awards }}</div><br>
+
+
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-md-4 single-right">
+					<h3>You May Also Like</h3>
+					{% for random_movie_1 in random_movie_1 %}
+						<div class="single-right-grids">
+							<div class="col-md-4 single-right-grid-left">
+								<a href="{% url 'movie' id=random_movie_1.id %}"><img src="{{random_movie_1.Poster}}" alt="" /></a>
+							</div>
+							<div class="col-md-8 single-right-grid-right">
+								<a href="{% url 'movie' id=random_movie_1.id %}" class="title"> {{random_movie_1.Title }}</a>
+								<p class="author"><a href="#" class="author">{{random_movie_1.Director }}</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+
+					{% endfor %}
+					</div>
+				</div>
+
+
+
+				<div class="clearfix"> </div>
+			</div>
+				<!-- //movie-browse-agile -->
+
+
+				</div>
+				<!-- //w3l-latest-movies-grids -->
+			</div>
+		</div>
+	<!-- //w3l-medile-movies-grids -->
+
+{% endblock body_data %}

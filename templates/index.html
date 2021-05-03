@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_data %}
+
+
+<script src="{% static 'js/jquery.slidey.js' %}"></script>
+<script src="{% static 'js/jquery.dotdotdot.min.js' %}"></script>
+	<script>
+		$('.toggle').click(function(){
+		  // Switches the Icon
+		  $(this).children('i').toggleClass('fa-pencil');
+		  // Switches the forms
+		  $('.form').animate({
+			height: "toggle",
+			'padding-top': 'toggle',
+			'padding-bottom': 'toggle',
+			opacity: "toggle"
+		  }, "slow");
+		});
+	</script>
+<!-- //bootstrap-pop-up -->
+<!-- banner -->
+	<div id="slidey" style="display:none;">
+		<ul>
+			{% for bannar_movie in bannar_movie %}
+			<li><img src="{{ bannar_movie.Poster }}" alt=" "><p class='title'>{{ bannar_movie.Title }}</p><p class='description'> {{ bannar_movie.story_line|slice:150 }}</p></li>
+		   {% endfor %}
+		</ul>
+    </div>
+
+	   <script type="text/javascript">
+			$("#slidey").slidey({
+				interval: 8000,
+				listCount: 5,
+				autoplay: false,
+				showList: true
+			});
+			$(".slidey-list-description").dotdotdot();
+		</script>
+<!-- //banner -->
+
+<br><br>
+<!-- banner-bottom --><center>
+					<div class="row " style="border:1.8px solid #eee;padding:20px;margin:10px;">
+
+						<div class="col-lg-1"></div>
+					              {% for random_movie in random_movie %}
+						<div class="col-md-2">
+											<div class="item" style="float:left;">
+												<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+													<a href="{% url 'movie' id=random_movie.id %}" class="hvr-shutter-out-horizontal"><img src="{{ random_movie.Poster }}" title="album-name" class="img-responsive" alt=" " />
+														<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+													</a>
+													<div class="mid-1 agileits_w3layouts_mid_1_home">
+														<div class="w3l-movie-text">
+															<h6><a href="{% url 'movie' id=random_movie.id %}">Peter</a></h6>
+														</div>
+														<div class="mid-2 agile_mid_2_home">
+															<p>2016</p>
+															<div class="block-stars">
+																<ul class="w3l-ratings">
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+																</ul>
+															</div>
+															<div class="clearfix"></div>
+														</div>
+													</div>
+													<div class="ribben">
+														<p>NEW</p>
+													</div>
+												</div>
+											</div>
+
+						</div>
+					{% endfor %}
+					</div>
+</center>
+<!-- //banner-bottom -->
+
+
+
+<!-- general -->
+	<div class="general">
+		<h4 class="latest-text w3_latest_text">Featured Movies</h4>
+		<div class="container">
+			<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+				<ul id="myTab" class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Featured</a></li>
+					<li role="presentation" ><a href="#rating" id="rating-tab" role="tab" data-toggle="tab" aria-controls="rating" aria-expanded="true">Recommanded</a></li>
+					<li role="presentation"><a href="#imdb" role="tab" id="imdb-tab" data-toggle="tab" aria-controls="imdb" aria-expanded="false">Recently Added</a></li>
+				</ul>
+
+
+				<div id="myTabContent" class="tab-content">
+					<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+						<div class="w3_agile_featured_movies">
+
+							{% for featured_movie in featured_movie %}
+												<div class="col-md-2 w3l-movie-gride-agile">
+													<a href="{% url 'movie' id=featured_movie.id %}" class="hvr-shutter-out-horizontal"><img src="{{featured_movie.Poster}}" title="album-name" class="img-responsive" alt=" " />
+														<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+													</a>
+													<div class="mid-1 agileits_w3layouts_mid_1_home">
+														<div class="w3l-movie-text">
+															<h6><a href="{% url 'movie' id=featured_movie.id %}">{{featured_movie.Title}}</a></h6>
+														</div>
+														<div class="mid-2 agile_mid_2_home">
+															<p>{{featured_movie.Released}}</p>
+															<div class="block-stars">
+																<ul class="w3l-ratings">
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+																	<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+																</ul>
+															</div>
+															<div class="clearfix"></div>
+														</div>
+													</div>
+													<div class="ribben">
+														<p>NEW</p>
+													</div>
+												</div>
+							{% endfor %}
+
+							 <div class="clearfix"></div>
+						</div>
+
+					<div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="profile-tab">
+
+						{% for random_movie_1 in random_movie_1 %}
+									<div class="col-md-2 w3l-movie-gride-agile">
+										<a href="{% url 'movie' id=random_movie_1.id %}" class="hvr-shutter-out-horizontal"><img src="{{random_movie_1.Poster}}" title="album-name" class="img-responsive" alt=" " />
+											<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+										</a>
+										<div class="mid-1 agileits_w3layouts_mid_1_home">
+											<div class="w3l-movie-text">
+												<h6><a href="{% url 'movie' id=random_movie_1.id %}">{{ random_movie_1.Title }}</a></h6>
+											</div>
+											<div class="mid-2 agile_mid_2_home">
+												<p>{{ random_movie_1.Released }}</p>
+												<div class="block-stars">
+													<ul class="w3l-ratings">
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="ribben">
+											<p>NEW</p>
+										</div>
+									</div>
+						{% endfor %}
+						<div class="clearfix"> </div>
+					</div>
+
+
+
+					<div role="tabpanel" class="tab-pane fade" id="imdb" aria-labelledby="imdb-tab">
+
+						{% for recent_movie in recent_movie %}
+									<div class="col-md-2 w3l-movie-gride-agile">
+										<a href="{% url 'movie' id=recent_movie.id %}" class="hvr-shutter-out-horizontal"><img src="{{recent_movie.Poster}}" title="album-name" class="img-responsive" alt=" " />
+											<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+										</a>
+										<div class="mid-1 agileits_w3layouts_mid_1_home">
+											<div class="w3l-movie-text">
+												<h6><a href="{% url 'movie' id=recent_movie.id %}">{{ recent_movie.title }}</a></h6>
+											</div>
+											<div class="mid-2 agile_mid_2_home">
+												<p>{{recent_movie.Released}}</p>
+												<div class="block-stars">
+													<ul class="w3l-ratings">
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+														<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="ribben">
+											<p>NEW</p>
+										</div>
+									</div>
+						{% endfor %}
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //general -->
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+$(document).ready(function(){
+    $(".dropdown").hover(
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+            $(this).toggleClass('open');
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+            $(this).toggleClass('open');
+        }
+    );
+});
+</script>
+<!-- //Bootstrap Core JavaScript -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+				};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+			});
+	</script>
+
+
+{% endblock body_data %}

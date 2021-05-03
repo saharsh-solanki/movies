@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_data %}
+
+
+<!-- faq-banner -->
+	<div class="faq">
+		<h4 class="latest-text w3_faq_latest_text w3_latest_text">Movies List</h4>
+			<div class="container">
+				<div class="agileits-news-top">
+					<ol class="breadcrumb">
+					  <li><a href="{% url 'index' %}">Home</a></li>
+					  <li class="active">All Movies</li>
+					</ol>
+				</div>
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+						<ul id="myTab" class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="{% url 'all-movie' %}" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">All</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=a" role="tab" id="a-tab" data-toggle="tab" aria-controls="a">A</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=b" role="tab" id="b-tab" data-toggle="tab" aria-controls="b">B</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=c" role="tab" id="c-tab" data-toggle="tab" aria-controls="c">C</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=d" role="tab" id="d-tab" data-toggle="tab" aria-controls="d">D</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=e" role="tab" id="e-tab" data-toggle="tab" aria-controls="e">E</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=f" role="tab" id="f-tab" data-toggle="tab" aria-controls="f">F</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=g" role="tab" id="g-tab" data-toggle="tab" aria-controls="g">G</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=h" role="tab" id="h-tab" data-toggle="tab" aria-controls="h">H</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=i" role="tab" id="i-tab" data-toggle="tab" aria-controls="i">I</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=j" role="tab" id="j-tab" data-toggle="tab" aria-controls="j">J</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=k" role="tab" id="k-tab" data-toggle="tab" aria-controls="k">K</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=l" role="tab" id="l-tab" data-toggle="tab" aria-controls="l">L</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=m" role="tab" id="m-tab" data-toggle="tab" aria-controls="m">M</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=n" role="tab" id="n-tab" data-toggle="tab" aria-controls="n">N</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=o" role="tab" id="o-tab" data-toggle="tab" aria-controls="o">O</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=p" role="tab" id="p-tab" data-toggle="tab" aria-controls="p">P</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=q" role="tab" id="q-tab" data-toggle="tab" aria-controls="q">Q</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=r" role="tab" id="r-tab" data-toggle="tab" aria-controls="r">R</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=s" role="tab" id="s-tab" data-toggle="tab" aria-controls="s">S</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=t" role="tab" id="t-tab" data-toggle="tab" aria-controls="t">T</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=u" role="tab" id="u-tab" data-toggle="tab" aria-controls="u">U</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=v" role="tab" id="v-tab" data-toggle="tab" aria-controls="v">V</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=w" role="tab" id="w-tab" data-toggle="tab" aria-controls="w">W</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=x" role="tab" id="x-tab" data-toggle="tab" aria-controls="x">X</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=y" role="tab" id="y-tab" data-toggle="tab" aria-controls="y">Y</a></li>
+							<li role="presentation"><a href="{% url 'all-movie' %}?word=z" role="tab" id="z-tab" data-toggle="tab" aria-controls="z">Z</a></li>
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+								<div class="agile-news-table">
+									<div class="w3ls-news-result">
+										<h4>Search Results : <span>{{count}}</span></h4>
+									</div>
+									<table class="table table-hover"  id="table-breakpoint">
+										<thead style="background:#ff8d1b; color:black;">
+										  <tr style=" color:black;">
+											<th style=" color:black;">Movie Name</th>
+											<th style=" color:black;">Release Year</th>
+											<th style=" color:black;">Runtime</th>
+											<th style=" color:black;">Country</th>
+											<th style=" color:black;"> Genre</th>
+											<th style=" color:black;">Language</th>
+										  </tr>
+										</thead>
+										<tbody>
+                                        {% for all_movie in all_mov %}
+										  <tr style="">
+                                              <td class="w3-list-img"><a href="{% url 'movie' id=all_movie.id %}"><img style="max-height:100px;margin-bottom:7px;" src="{{all_movie.Poster}}" alt="" /><br> <span class="" style="color:black;"><strong>{{all_movie.Title}}</strong></span></a></td>
+											<td style="color:black;"><br><br>{{all_movie.Released}}</td>
+											<td style="color:black;"><br><br>{{all_movie.Runtime}}</td>
+											<td class="w3-list-info" style="color:black;"><br><br>{{all_movie.Country}}</td>
+											<td class="w3-list-info" style="color:black;"><br><br>{{all_movie.Genre}}</td>
+											<td style="color:black;"><br><br>{{all_movie.Language}}</td>
+										  </tr>
+                                        {% endfor %}
+                                        </tbody>
+									</table>
+								</div>
+							</div>
+
+
+
+
+{% endblock body_data %}
